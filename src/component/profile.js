@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import Webcam from "react-webcam";
 
 const videoConstraints = {
-  width: 100,
-  height: 100,
-  facingMode: "user"
+  width: 300,
+  height: 200,
+  facingMode: { exact: "environment" },
 };
 
 const Profile = () => {
