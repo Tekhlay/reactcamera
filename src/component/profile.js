@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Webcam from "react-webcam";
+import { FaSync } from "react-icons/fa";
 
 const videoConstraints = {
   width: 400,
@@ -11,6 +12,7 @@ const Profile = () => {
   const [imageSrc, setImageSrc] = useState('');
   const [isCameraActive, setIsCameraActive] = useState(false);
   const [isPhotoTaken, setIsPhotoTaken] = useState(false);
+  const [isFrontcamera, setIsFontcamera] = useState(true);
   const webcamRef = React.useRef(null);
 
   const capture = React.useCallback(() => {
@@ -30,6 +32,11 @@ const Profile = () => {
     setIsCameraActive(true); // Restart the camera
     setImageSrc(''); // Reset the image source when retaking the photo
     setIsPhotoTaken(false); // Reset the flag when retaking the photo
+  };
+
+  const handleSwitchCamera = () => {
+    setIsFontcamera(!isFrontcamera);
+    videoConstraints.facingMode = isFrontcamera ? "environment" : "user";
   };
 
   const handleNext = () => {
@@ -58,6 +65,9 @@ const Profile = () => {
                   width={400}
                   videoConstraints={videoConstraints}
                 />
+                <button onClick={handleSwitchCamera} className="btn btn-primary mt-3">
+                  <FaSync />
+                </button>
                 {!isPhotoTaken && (
                   <button onClick={capture} className="btn btn-primary mt-3">
                     Capture photo
