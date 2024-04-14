@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Webcam from "react-webcam";
-import { FaToggleOn, FaCamera } from "react-icons/fa";
+import { FaToggleOn, FaCamera, FaToggleOff } from "react-icons/fa";
 
 const Profile = () => {
   const [imageSrc, setImageSrc] = useState('');
@@ -67,8 +67,8 @@ const Profile = () => {
                   videoConstraints={videoConstraints}
                 />
                 <div className="camera-controls position-absolute bottom-0 start-50 translate-middle-x">
-                  <button onClick={handleSwitchCamera} className="btn btn-light me-2">
-                    <fa FaToggleOn />
+                  <button onClick={handleSwitchCamera} className="btn btn-primary mt-3 me-2">
+                  {facingMode === "user" ? <FaToggleOn /> : <FaToggleOff />}
                   </button>
                 
                 {!isPhotoTaken && (
