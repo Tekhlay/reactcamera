@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import Webcam from "react-webcam";
 
 const videoConstraints = {
-  width: 300,
-  height: 200,
-  facingMode: { exact: "environment" },
+  width: 400,
+  height: 600,
+  facingMode: { exact: "user" },
 };
 
 const Profile = () => {
@@ -52,10 +52,10 @@ const Profile = () => {
               <div className="d-flex flex-column">
                 <Webcam
                   audio={false}
-                  height={200}
+                  height={400}
                   ref={webcamRef}
                   screenshotFormat="image/jpeg"
-                  width={100}
+                  width={400}
                   videoConstraints={videoConstraints}
                 />
                 {!isPhotoTaken && (
