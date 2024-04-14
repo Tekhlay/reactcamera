@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Webcam from "react-webcam";
-import { FaSync } from "react-icons/fa";
+import { FaToggleOn, FaCamera } from "react-icons/fa";
 
 const videoConstraints = {
   width: 400,
@@ -56,7 +56,7 @@ const Profile = () => {
         ) : (
           <>
             {isCameraActive && (
-              <div className="d-flex flex-column">
+              <div className="d-flex flex-column position-relative">
                 <Webcam
                   audio={false}
                   height={400}
@@ -65,14 +65,17 @@ const Profile = () => {
                   width={400}
                   videoConstraints={videoConstraints}
                 />
-                <button onClick={handleSwitchCamera} className="btn btn-primary mt-3">
-                  <FaSync />
-                </button>
+                <div className="camera-controls position-absolute bottom-0 start-50 translate-middle-x">
+                  <button onClick={handleSwitchCamera} className="btn btn-light me-2">
+                    <fa FaToggleOn />
+                  </button>
+                
                 {!isPhotoTaken && (
                   <button onClick={capture} className="btn btn-primary mt-3">
-                    Capture photo
+                    <FaCamera/>
                   </button>
                 )}
+              </div>
               </div>
             )}
             {imageSrc !== '' && (
