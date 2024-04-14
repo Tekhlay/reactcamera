@@ -2,17 +2,11 @@ import React, { useState } from "react";
 import Webcam from "react-webcam";
 import { FaToggleOn, FaCamera } from "react-icons/fa";
 
-const videoConstraints = {
-  width: 400,
-  height: 600,
-  facingMode: "environment",
-};
-
 const Profile = () => {
   const [imageSrc, setImageSrc] = useState('');
   const [isCameraActive, setIsCameraActive] = useState(false);
   const [isPhotoTaken, setIsPhotoTaken] = useState(false);
-  const [isFrontcamera, setIsFontcamera] = useState(true);
+  const [facingMode, setFacingMode] = useState('environment'); // 'user' or 'environment
   const webcamRef = React.useRef(null);
 
   const capture = React.useCallback(() => {
@@ -35,12 +29,19 @@ const Profile = () => {
   };
 
   const handleSwitchCamera = () => {
-    setIsFontcamera(!isFrontcamera);
-    videoConstraints.facingMode = isFrontcamera ? "environment" : "user";
+    setFacingMode((prevFacingMode) =>
+      prevFacingMode === 'user' ? 'environment' : 'user'
+    );
   };
 
   const handleNext = () => {
     // Handle the "Next" button click here
+  };
+
+  const videoConstraints = {
+    width: 400,
+    height: 600,
+    facingMode,
   };
 
   return (
