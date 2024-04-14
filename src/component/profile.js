@@ -5,7 +5,7 @@ import { FaSync } from "react-icons/fa";
 const videoConstraints = {
   width: 400,
   height: 600,
-  facingMode: { exact: "user" },
+  facingMode: "environment",
 };
 
 const Profile = () => {
